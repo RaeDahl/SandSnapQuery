@@ -13,7 +13,7 @@ BROKEN_FILTER_1 = {
 	"layerDefs": "survey"} 
 BROKEN_FILTER_2 = {"layerDefs": 0}
 
-CANNON_BEACH_FILTER = {"layerDefs: {"0":"objectid=2120"}}
+CANNON_BEACH_FILTER = {"layerDefs": {"0":"objectid=2120"}}
 OREGON_FILTER = {
 	"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error' AND location_state = 'OR'"}
 } 
@@ -23,13 +23,19 @@ VICKSBURG_FILTER = {
 } 
 
 SAVE_PATH = "unit_test_output.json"
-
+CSV_SAVE_PATH = "unit_test_output.csv"
 
 
 # Test basic functionality
 SandSnapQuery(CORRECT_QUERY_URL, SAVE_PATH, DEFAULT_FILTER)
 if(os.path.exists(SAVE_PATH)):
-	print("Query and file save successful")
+	print("Query and json file save successful")
+else:
+	print("No file saved to save path")
+	
+SandSnapQuery(CORRECT_QUERY_URL, CSV_SAVE_PATH, DEFAULT_FILTER, file_type="csv")
+if(os.path.exists(CSV_SAVE_PATH)):
+	print("Query and csv file save successful")
 else:
 	print("No file saved to save path")
 
