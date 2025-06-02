@@ -23,7 +23,7 @@ to save in (default is json). Because arguments like the url and filter can be v
 
 `SandSnapQuery(url, "output.csv", beaches_in_oregon, file_type= "csv")`
 
-Define filter parameters using the json representation for layer definitions as described in the [ArcGIS documentation](https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service/).
+Define filter parameters using the json representation for layer definitions as described in the [ArcGIS documentation](https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service/#request-parameters).
 
 **Examples**
 
