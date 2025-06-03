@@ -15,7 +15,7 @@ BROKEN_URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services
 
 DEFAULT_FILTER = {
     "layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}
-} 
+}
 BROKEN_FILTER_1 = {
     "layerDefs": "survey"} 
 BROKEN_FILTER_2 = {"layerDefs": 0}
@@ -23,11 +23,11 @@ BROKEN_FILTER_2 = {"layerDefs": 0}
 CANNON_BEACH_FILTER = {"layerDefs": {"0":"objectid=2120"}}
 OREGON_FILTER = {
     "layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error' AND location_state = 'OR'"}
-} 
+}
 VICKSBURG_FILTER = {
     "layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
     "geometry": {"xmin":-91, "ymin":32, "xmax":-90, "ymax":33}
-} 
+}
 
 SAVE_PATH = "unit_test_output.json"
 CSV_SAVE_PATH = "unit_test_output.csv"
