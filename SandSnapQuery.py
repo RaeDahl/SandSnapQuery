@@ -82,4 +82,4 @@ PARAMS = {
 	"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}
 } 
 
-sand_snap_query(url, save_file_path, params)
+sand_snap_query(URL, SAVE_FILE_PATH, PARAMS)
