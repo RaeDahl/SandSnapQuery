@@ -42,3 +42,5 @@ The data returned by the program is checked against known data from the SandSnap
 
   - [requests](https://pypi.org/project/requests/)
   - [json](https://docs.python.org/3/library/json.html)
+  - [csv](https://docs.python.org/3/library/csv.html)
+  - [os](https://docs.python.org/3/library/os.html)
