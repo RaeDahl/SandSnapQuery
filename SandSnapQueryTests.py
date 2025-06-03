@@ -55,7 +55,7 @@ sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_2)
 # Test filtering for specific data point
 
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, CANNON_BEACH_FILTER)
-with open(SAVE_PATH, r) as file:
+with open(SAVE_PATH, "r") as file:
 	data = json.load(file)
 	if (data):
 
@@ -68,7 +68,7 @@ with open(SAVE_PATH, r) as file:
 
 
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, OREGON_FILTER)
-with open(SAVE_PATH, r) as file:
+with open(SAVE_PATH, "r") as file:
 	data = json.load(file)
 	if data:
 
@@ -83,7 +83,7 @@ with open(SAVE_PATH, r) as file:
 
 
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, VICKSBURG_FILTER)
-with open(SAVE_PATH, r) as file:
+with open(SAVE_PATH, "r") as file:
 	data = json.load(file)
 	if data:
 
