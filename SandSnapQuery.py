@@ -58,8 +58,8 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
                     writer.writerows(data)
 
                 else:
-		    if file_type != "json":
-                    	print(f"Invalid file type {file_type} given. Saving as json instead.")
+                    if file_type != "json":
+                        print(f"Invalid file type {file_type} given. Saving as json instead.")
                     json_string = json.dumps(data)
                     output_file.write(json_string)
 
