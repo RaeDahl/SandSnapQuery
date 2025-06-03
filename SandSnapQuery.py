@@ -58,6 +58,7 @@ def SandSnapQuery(url : str, save_path : str, filter : dict, file_type : str = "
 
 				else:
 					print(f"Invalid file type {file_type} given. Saving as json instead.")
+					json.dumps(data, output_file)
 
 			else:
 				print(f"Request failed with error code {response.status_code}.")
