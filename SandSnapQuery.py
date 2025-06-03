@@ -3,6 +3,7 @@ Description:
 ------------
 A program to download data from the SandSnap database
 '''
+# pylint: disable=line-too-long
 
 import json
 import csv
