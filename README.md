@@ -17,7 +17,7 @@ There is a default query set up in the `MAIN` section of `SandSnapQuery.py`. Thi
 plan to import the function into other files. The function takes 4 arguments: The url for the query page, the path to save the output to, the filters for the data, and an optional argument for the file type
 to save in (default is json). Because arguments like the url and filter can be very long, it is recommended that you save those in separate variables before passing them to the query function.
 
-#### Examples: 
+### Examples: 
 
 `SandSnapQuery(url, "output.json", valid_data_filter)`
 
@@ -25,7 +25,7 @@ to save in (default is json). Because arguments like the url and filter can be v
 
 Define filter parameters using the json representation for layer definitions as described in the [ArcGIS documentation](https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service/#request-parameters).
 
-#### Examples:
+### Examples:
 
 `{"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}} ` will filter for only data without errors
 
