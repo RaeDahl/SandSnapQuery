@@ -58,7 +58,7 @@ data = json.load(file)
 if (data):
 
 	if(list(filter(lambda x:x ["objectid"] == "2120", data))):
-		print("Filtering by objectid successful)
+		print("Filtering by objectid successful")
 	else:
 		print("ID 2120 does not show up in result")
 else:
@@ -71,7 +71,7 @@ data = json.load(file)
 if (data):
 
 	if(len(data) == 6):
-		print("Filtering by state successful)
+		print("Filtering by state successful")
 	elif (len(data) < 6):
 		print(f"Some data points missing. Only found {len(data)} valid sandsnaps in OR, there should be 6.")
 	else:
