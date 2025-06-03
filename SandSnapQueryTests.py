@@ -1,7 +1,9 @@
 # Unit tests for SandSnap Query code
 
-from SandSnapQuery import sand_snap_query
 import json
+import os
+
+from SandSnapQuery import sand_snap_query
 
 CORRECT_QUERY_URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query?layerDefs=%7B%220%22%3A%22country+%3D+%27USA%27%22%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=html&token="
 BROKEN_URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0ce4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query?layerDefs=%7B%220%22%3A%22calc_grain_size+%3C%3E+%27Unknown+Grain+Size%27%22%7D&geometry=-91%2C+32%2C+-90%2C+33&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=html&token="
@@ -28,13 +30,13 @@ CSV_SAVE_PATH = "unit_test_output.csv"
 
 # Test basic functionality
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, DEFAULT_FILTER)
-if(os.path.exists(SAVE_PATH)):
+if os.path.exists(SAVE_PATH):
 	print("Query and json file save successful")
 else:
 	print("No file saved to save path")
 	
 sand_snap_query(CORRECT_QUERY_URL, CSV_SAVE_PATH, DEFAULT_FILTER, file_type="csv")
-if(os.path.exists(CSV_SAVE_PATH)):
+if os.path.exists(CSV_SAVE_PATH):
 	print("Query and csv file save successful")
 else:
 	print("No file saved to save path")
@@ -57,7 +59,7 @@ file = open(SAVE_PATH, r)
 data = json.load(file)
 if (data):
 
-	if(list(filter(lambda x:x ["objectid"] == "2120", data))):
+	if list(filter(lambda x:x ["objectid"] == "2120", data)):
 		print("Filtering by objectid successful")
 	else:
 		print("ID 2120 does not show up in result")
@@ -68,11 +70,11 @@ else:
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, OREGON_FILTER)
 file = open(SAVE_PATH, r)
 data = json.load(file)
-if (data):
+if data:
 
-	if(len(data) == 6):
+	if len(data) == 6:
 		print("Filtering by state successful")
-	elif (len(data) < 6):
+	elif len(data) < 6:
 		print(f"Some data points missing. Only found {len(data)} valid sandsnaps in OR, there should be 6.")
 	else:
 		print(f"Extra data found. Found {len(data)} valid sandsnaps in OR, there should only be 6")
@@ -83,16 +85,16 @@ else:
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, VICKSBURG_FILTER)
 file = open(SAVE_PATH, r)
 data = json.load(file)
-if (data):
+if data:
 
-	if(list(filter(lambda x:x ["objectid"] == "687", data))):
+	if list(filter(lambda x:x ["objectid"] == "687", data)):
 		print("Sandsnap known to be in area found.")
 	else:
 		print("ID 687 does not show up in result, missing data")
 
-	if(len(data) == 75):
+	if len(data) == 75:
 		print("Correct number of sandsnaps found when filtering by geometry")
-	elif (len(data) < 6):
+	elif len(data) < 6:
 		print(f"Some data points missing. Only found {len(data)} valid sandsnaps in range, there should be 75.")
 	else:
 		print(f"Extra data found. Found {len(data)} valid sandsnaps in area, there should only be 75")
