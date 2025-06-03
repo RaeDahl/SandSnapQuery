@@ -52,17 +52,14 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
                 data = response.json()
                 data = data.get("features")
 
-                if file_type == "json":
-                    json_string = json.dumps(data)
-                    output_file.write(json_string)
-
-                elif file_type == "csv":
+                if file_type == "csv":
                     writer = csv.DictWriter(output_file, fieldnames=data[0].keys())
                     writer.writeheader()
                     writer.writerows(data)
 
                 else:
-                    print(f"Invalid file type {file_type} given. Saving as json instead.")
+		    if file_type != "json":
+                    	print(f"Invalid file type {file_type} given. Saving as json instead.")
                     json_string = json.dumps(data)
                     output_file.write(json_string)
 
