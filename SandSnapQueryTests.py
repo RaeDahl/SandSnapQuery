@@ -68,7 +68,7 @@ with open(SAVE_PATH, "r", encoding="utf-8") as file:
 
         if list(filter(lambda x:x ["objectid"] == "2120", data)):
             print("Filtering by objectid successful")
-	else:
+        else:
             print("\033[35mID 2120 does not show up in result\033[0m")
    else:
        print("\033[35mFilter by ID query unsuccessful, no data found\033[0m")
