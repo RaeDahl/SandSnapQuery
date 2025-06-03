@@ -43,16 +43,16 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
 			response = requests.get(url, params=query_params)
 	
 			# Check for errors
-			if (response.status_code == 200):
+			if response.status_code == 200:
 			
 				# Save data into output file
 				data = response.json()
 				data = data.get("features")
 
-				if (file_type == "json"):
+				if file_type == "json":
 					json.dumps(data, output_file)
 
-				elif (file_type == "csv"):
+				elif file_type == "csv":
 					writer = csv.DictWriter(output_file, fieldnames=data[0].keys())
 					writer.writeheader()
 					writer.writerows(data)
