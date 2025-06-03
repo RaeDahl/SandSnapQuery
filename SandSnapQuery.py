@@ -1,4 +1,8 @@
-# A program to download data from the SandSnap database
+'''
+Description:
+------------
+A program to download data from the SandSnap database
+'''
 
 import json
 import csv
