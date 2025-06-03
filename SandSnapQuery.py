@@ -1,8 +1,9 @@
 # A program to download data from the SandSnap database
 
-import requests
 import json
 import csv
+
+import requests
 
 
 def sand_snap_query(url : str, save_path : str, query_params : dict, file_type : str = "json"):
@@ -66,10 +67,6 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
 	except Exception as e:
 
 		print(f"Program failed with error {e}.")
-
-
-
-
 
 
 ### MAIN ###
