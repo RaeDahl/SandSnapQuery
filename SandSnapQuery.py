@@ -65,7 +65,7 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
                     json_string = json.dumps(data)
                     output_file.write(json_string)
 
-           else:
+            else:
                print(f"Request failed with error code {response.status_code}.")
 
     except Exception as e:
