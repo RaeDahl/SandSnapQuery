@@ -3,7 +3,7 @@ Description:
 ------------
 Unit tests for SandSnap Query code
 '''
-# pylint: disable=line-too-long
+# pylint: disable=line-too-long,invalid-name
 
 import json
 import os
