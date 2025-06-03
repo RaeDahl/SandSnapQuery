@@ -5,7 +5,7 @@ import json
 import csv
 
 
-def SandSnapQuery(url : str, save_path : str, filter : dict, file_type : str = "json"):
+def sand_snap_query(url : str, save_path : str, filter : dict, file_type : str = "json"):
 	"""
 	Description:
 	------------
@@ -85,4 +85,4 @@ params = {
 	"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}
 } 
 
-SandSnapQuery(url, save_file_path, params)
+sand_snap_query(url, save_file_path, params)
