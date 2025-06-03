@@ -19,7 +19,7 @@ OREGON_FILTER = {
 } 
 VICKSBURG_FILTER = {
 	"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}
-	"geometry": {xmin: -91, ymin: 32, xmax: -90, ymax: 33}
+	"geometry": {xmin:-91, ymin:32, xmax:-90, ymax:33}
 } 
 
 SAVE_PATH = "unit_test_output.json"
