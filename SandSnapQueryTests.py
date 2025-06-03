@@ -70,8 +70,8 @@ with open(SAVE_PATH, "r", encoding="utf-8") as file:
             print("Filtering by objectid successful")
         else:
             print("\033[35mID 2120 does not show up in result\033[0m")
-   else:
-       print("\033[35mFilter by ID query unsuccessful, no data found\033[0m")
+    else:
+        print("\033[35mFilter by ID query unsuccessful, no data found\033[0m")
 
 print("\033[36mTesting filtering for a specific state\033[0m")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, OREGON_FILTER)
