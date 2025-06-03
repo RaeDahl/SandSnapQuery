@@ -31,6 +31,9 @@ Define filter parameters using the json representation for layer definitions as 
 
 `{"layerDefs": {"0":"location_state = 'OR'"}` will return all SandSnaps in Oregon
 
+`{"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
+  "geometry": {"xmin":-91, "ymin":32, "xmax":-90, "ymax":33}}` will return all data within those coordinates
+
 ## Testing
   
 The repository also includes a suite of unit tests to ensure that the query function works properly. The query function is run with both correct and incorrect parameters, and checked for proper error handling. 
