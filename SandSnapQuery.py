@@ -40,7 +40,7 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
 		with open(save_path, "w") as output_file:
 	
 			# Request data from server
-			response = requests.get(url, params=query_params)
+			response = requests.get(url, params=query_params, timeout=5)
 	
 			# Check for errors
 			if response.status_code == 200:
