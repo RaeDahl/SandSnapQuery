@@ -68,7 +68,7 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
             else:
                 print(f"Request failed with error code {response.status_code}.")
 
-    except requests.exceptions.Timeout, requests.exceptions.HTTPError, requests.exceptions.ConnectionError as e:
+    except (requests.exceptions.Timeout, requests.exceptions.HTTPError, requests.exceptions.ConnectionError) as e:
         print(f"Program failed with error {e}.")
 
 
