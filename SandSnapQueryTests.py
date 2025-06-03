@@ -18,7 +18,7 @@ OREGON_FILTER = {
 	"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error' AND location_state = 'OR'"}
 } 
 VICKSBURG_FILTER = {
-	"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}
+	"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
 	"geometry": {xmin:-91, ymin:32, xmax:-90, ymax:33}
 } 
 
