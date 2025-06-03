@@ -55,49 +55,49 @@ sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_2)
 # Test filtering for specific data point
 
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, CANNON_BEACH_FILTER)
-file = open(SAVE_PATH, r)
-data = json.load(file)
-if (data):
+with open(SAVE_PATH, r) as file:
+	data = json.load(file)
+	if (data):
 
-	if list(filter(lambda x:x ["objectid"] == "2120", data)):
-		print("Filtering by objectid successful")
+		if list(filter(lambda x:x ["objectid"] == "2120", data)):
+			print("Filtering by objectid successful")
+		else:
+			print("ID 2120 does not show up in result")
 	else:
-		print("ID 2120 does not show up in result")
-else:
-	print("Filter by ID query unsuccessful, no data found")
+		print("Filter by ID query unsuccessful, no data found")
 
 
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, OREGON_FILTER)
-file = open(SAVE_PATH, r)
-data = json.load(file)
-if data:
+with open(SAVE_PATH, r) as file:
+	data = json.load(file)
+	if data:
 
-	if len(data) == 6:
-		print("Filtering by state successful")
-	elif len(data) < 6:
-		print(f"Some data points missing. Only found {len(data)} valid sandsnaps in OR, there should be 6.")
+		if len(data) == 6:
+			print("Filtering by state successful")
+		elif len(data) < 6:
+			print(f"Some data points missing. Only found {len(data)} valid sandsnaps in OR, there should be 6.")
+		else:
+			print(f"Extra data found. Found {len(data)} valid sandsnaps in OR, there should only be 6")
 	else:
-		print(f"Extra data found. Found {len(data)} valid sandsnaps in OR, there should only be 6")
-else:
-	print("Filter by state query unsuccessful, no data found")
+		print("Filter by state query unsuccessful, no data found")
 
 
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, VICKSBURG_FILTER)
-file = open(SAVE_PATH, r)
-data = json.load(file)
-if data:
+with open(SAVE_PATH, r) as file:
+	data = json.load(file)
+	if data:
 
-	if list(filter(lambda x:x ["objectid"] == "687", data)):
-		print("Sandsnap known to be in area found.")
+		if list(filter(lambda x:x ["objectid"] == "687", data)):
+			print("Sandsnap known to be in area found.")
+		else:
+			print("ID 687 does not show up in result, missing data")
+
+		if len(data) == 75:
+			print("Correct number of sandsnaps found when filtering by geometry")
+		elif len(data) < 6:
+			print(f"Some data points missing. Only found {len(data)} valid sandsnaps in range, there should be 75.")
+		else:
+			print(f"Extra data found. Found {len(data)} valid sandsnaps in area, there should only be 75")
+
 	else:
-		print("ID 687 does not show up in result, missing data")
-
-	if len(data) == 75:
-		print("Correct number of sandsnaps found when filtering by geometry")
-	elif len(data) < 6:
-		print(f"Some data points missing. Only found {len(data)} valid sandsnaps in range, there should be 75.")
-	else:
-		print(f"Extra data found. Found {len(data)} valid sandsnaps in area, there should only be 75")
-
-else:
-	print("Filter by geometry query unsuccessful, no data found")
+		print("Filter by geometry query unsuccessful, no data found")
