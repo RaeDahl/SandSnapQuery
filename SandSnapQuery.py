@@ -37,7 +37,7 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
 
 	"""
 	try:
-		with open(save_path, "w") as output_file:
+		with open(save_path, "w", encoding="utf-8") as output_file:
 	
 			# Request data from server
 			response = requests.get(url, params=query_params, timeout=5)
