@@ -50,7 +50,8 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
 				data = data.get("features")
 
 				if file_type == "json":
-					json.dumps(data, output_file)
+					json_string = json.dumps(data)
+					output_file.write(json_string)
 
 				elif file_type == "csv":
 					writer = csv.DictWriter(output_file, fieldnames=data[0].keys())
@@ -59,7 +60,8 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
 
 				else:
 					print(f"Invalid file type {file_type} given. Saving as json instead.")
-					json.dumps(data, output_file)
+					json_string = json.dumps(data)
+					output_file.write(json_string)
 
 			else:
 				print(f"Request failed with error code {response.status_code}.")
