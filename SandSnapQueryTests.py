@@ -1,6 +1,6 @@
 # Unit tests for SandSnap Query code
 
-from SandSnapQuery import SandSnapQuery
+from SandSnapQuery import sand_snap_query
 import json
 
 CORRECT_QUERY_URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query?layerDefs=%7B%220%22%3A%22country+%3D+%27USA%27%22%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=html&token="
@@ -27,13 +27,13 @@ CSV_SAVE_PATH = "unit_test_output.csv"
 
 
 # Test basic functionality
-SandSnapQuery(CORRECT_QUERY_URL, SAVE_PATH, DEFAULT_FILTER)
+sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, DEFAULT_FILTER)
 if(os.path.exists(SAVE_PATH)):
 	print("Query and json file save successful")
 else:
 	print("No file saved to save path")
 	
-SandSnapQuery(CORRECT_QUERY_URL, CSV_SAVE_PATH, DEFAULT_FILTER, file_type="csv")
+sand_snap_query(CORRECT_QUERY_URL, CSV_SAVE_PATH, DEFAULT_FILTER, file_type="csv")
 if(os.path.exists(CSV_SAVE_PATH)):
 	print("Query and csv file save successful")
 else:
@@ -43,16 +43,16 @@ else:
 # Test error handling
 
 # Wrong URL
-SandSnapQuery(BROKEN_URL, SAVE_PATH, DEFAULT_FILTER)
+sand_snap_query(BROKEN_URL, SAVE_PATH, DEFAULT_FILTER)
 
 # Invalid parameters
-SandSnapQuery(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_1)
-SandSnapQuery(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_2)
+sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_1)
+sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_2)
 
 
 # Test filtering for specific data point
 
-SandSnapQuery(CORRECT_QUERY_URL, SAVE_PATH, CANNON_BEACH_FILTER)
+sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, CANNON_BEACH_FILTER)
 file = open(SAVE_PATH, r)
 data = json.load(file)
 if (data):
@@ -65,7 +65,7 @@ else:
 	print("Filter by ID query unsuccessful, no data found")
 
 
-SandSnapQuery(CORRECT_QUERY_URL, SAVE_PATH, OREGON_FILTER)
+sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, OREGON_FILTER)
 file = open(SAVE_PATH, r)
 data = json.load(file)
 if (data):
@@ -80,7 +80,7 @@ else:
 	print("Filter by state query unsuccessful, no data found")
 
 
-SandSnapQuery(CORRECT_QUERY_URL, SAVE_PATH, VICKSBURG_FILTER)
+sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, VICKSBURG_FILTER)
 file = open(SAVE_PATH, r)
 data = json.load(file)
 if (data):
