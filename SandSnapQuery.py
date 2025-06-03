@@ -5,7 +5,7 @@ import json
 import csv
 
 
-def sand_snap_query(url : str, save_path : str, filter : dict, file_type : str = "json"):
+def sand_snap_query(url : str, save_path : str, query_params : dict, file_type : str = "json"):
 	"""
 	Description:
 	------------
@@ -21,7 +21,7 @@ def sand_snap_query(url : str, save_path : str, filter : dict, file_type : str =
 	save_path : str
 		The path to the output file. should be a .json or .csv
 	
-	filter : dict[str, dict[str, str]]
+	query_params : dict[str, dict[str, str]]
 		The filter parameters to be included in the query. Use json 
 		representation for layer definitions as described here: 
 		https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service/
@@ -39,7 +39,7 @@ def sand_snap_query(url : str, save_path : str, filter : dict, file_type : str =
 		with open(save_path, "w") as output_file:
 	
 			# Request data from server
-			response = requests.get(url, params=filter)
+			response = requests.get(url, params=query_params)
 	
 			# Check for errors
 			if (response.status_code == 200):
@@ -75,13 +75,13 @@ def sand_snap_query(url : str, save_path : str, filter : dict, file_type : str =
 ### MAIN ###
 
 # url for SandSnap query page
-url = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query?layerDefs=%7B%220%22%3A%22country+%3D+%27USA%27%22%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=html&token=" 
+URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query?layerDefs=%7B%220%22%3A%22country+%3D+%27USA%27%22%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=html&token=" 
 
 # path to file data is outputted in. Should be a json file.
-save_file_path = "output.json" 
+SAVE_FILE_PATH = "output.json" 
 
 # filters for only data points with a calculated grain size and no errors
-params = {
+PARAMS = {
 	"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}
 } 
 
