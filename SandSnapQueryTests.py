@@ -45,6 +45,7 @@ sand_snap_query(BROKEN_URL, SAVE_PATH, DEFAULT_FILTER)
 
 # Invalid parameters
 print("\n\033[36mTesting error handling for queries with invalid filter parameters\033[0m")
+print("If errors are handled correctly, you should see 2 error messages print below")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_1)
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_2)
 
@@ -53,6 +54,7 @@ print("\n\033[36mTesting filtering for a specific object id\033[0m")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, CANNON_BEACH_FILTER)
 with open(SAVE_PATH, "r", encoding="utf-8") as file:
     data = json.load(file)
+    print(data)
     if data:
 
         if list(filter(lambda x:x ["objectid"] == "2120", data)):
@@ -66,6 +68,7 @@ print("\n\033[36mTesting filtering for a specific state\033[0m")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, OREGON_FILTER)
 with open(SAVE_PATH, "r", encoding="utf-8") as file:
     data = json.load(file)
+    print(data)
     if data:
         if len(data) == 6:
             print("\033[32mFiltering by state successful\033[0m")
