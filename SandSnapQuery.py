@@ -6,7 +6,6 @@ A program to download data from the SandSnap database
 # pylint: disable=line-too-long,invalid-name
 
 import json
-import csv
 
 import requests
 
@@ -37,8 +36,8 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str):
         """
     try:
 
-        if type(url) != str or type(save_path) != str or type(layer_defs) != str:
-            raise(TypeError)
+        if not isinstance(url, str) or not isinstance(save_path, str) or not isinstance(layer_defs, str):
+            raise TypeError
 
         # build url with parameters
         layer_defs = layer_defs.replace(" ", "+")
