@@ -54,7 +54,6 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str):
 
 	            # Save data into output file
                 data = response.json()
-                data = data.get("features")
 
                 json_string = json.dumps(data)
                 output_file.write(json_string)
