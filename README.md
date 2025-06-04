@@ -9,7 +9,7 @@ A Python program to retrieve data from the [SandSnap query page](https://service
   
   - Downloads data from SandSnap API
   - Can include filters in API query (Eg. only return data points with no errors, or give all data from a specific state)
-  - Saves data in json or csv files
+  - Saves data in json file
 
 ## Usage
 
@@ -27,12 +27,9 @@ Define filter parameters using the json representation for layer definitions as 
 
 ### Examples:
 
-`valid_data_filter = {"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}} ` will filter for only data without errors
+`valid_data_filter = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'" ` will filter for only data without errors
 
-`beaches_in_oregon = {"layerDefs": {"0":"location_state = 'OR'"}` will return all SandSnaps in Oregon
-
-`sandsnaps_near_vicksburg = {"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
-  "geometry": {"xmin":-91, "ymin":32, "xmax":-90, "ymax":33}}` will return all valid data within those coordinates
+`beaches_in_oregon = "location_state = 'OR'"` will return all SandSnaps in Oregon
 
 ## Testing
   
