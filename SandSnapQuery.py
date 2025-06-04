@@ -54,9 +54,14 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str):
 
 	            # Save data into output file
                 data = response.json()
+                if data is not None:
+                    data = data["layers"][0]["features"]
 
-                json_string = json.dumps(data)
-                output_file.write(json_string)
+                    json_string = json.dumps(data)
+                    output_file.write(json_string)
+
+                else:
+                    print("Unable to retrive data from server")
 
             else:
                 print(f"Request failed with error code {response.status_code}.")
