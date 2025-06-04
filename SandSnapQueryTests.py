@@ -26,6 +26,7 @@ OREGON_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS 
 
 SAVE_PATH = "unit_test_output.json"
 
+# print status message
 print("\n================================")
 print("     Starting unit tests.")
 print("================================")
@@ -100,7 +101,7 @@ with open(SAVE_PATH, "r", encoding="utf-8") as file:
 #     else:
 #         print("Filter by geometry query unsuccessful, no data found")
 
-
+# print status message
 print("\n================================")
 print("       Testing completed.")
 print("================================\n")
