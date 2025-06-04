@@ -10,7 +10,7 @@ import csv
 
 import requests
 
-def sand_snap_query(url : str, save_path : str, query_params : dict, file_type : str = "json"):
+def sand_snap_query(url : str, save_path : str, layer_defs : str, file_type : str = "json"):
     """
     Description:
     ------------
@@ -21,12 +21,12 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
     Parameters:
     -----------
     url : str
-        The url of the query page
+        The url of the query page without any parameters
 	
         save_path : str
             The path to the output file. should be a .json or .csv
 	    
-        query_params : dict[str, dict[str, str]]
+        layer_defs : str
             The filter parameters to be included in the query. Use json 
             representation for layer definitions as described here: 
             https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service/
@@ -40,10 +40,14 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
         None, but does generate a file with output in the location specified by save_path
         """
     try:
+
+        # build url with parameters
+         url = url + '?layerDefs=%&B"0"%3A"' + layer_defs + '"%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
+
         with open(save_path, "w", encoding="utf-8") as output_file:
 
             # Request data from server
-            response = requests.get(url, params=query_params, timeout=5)
+            response = requests.get(url, timeout=5)
 
 	    # Check for errors
             if response.status_code == 200:
@@ -74,14 +78,11 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
 ### MAIN ###
 
 # url for SandSnap query page
-URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query?layerDefs=%7B%220%22%3A%22country+%3D+%27USA%27%22%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=html&token="
+URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query"
 
 # path to file data is outputted in. Should be a json file.
 SAVE_FILE_PATH = "output.json"
 
 # filters for only data points with a calculated grain size and no errors
-PARAMS = {
-    "layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
-}
-
-sand_snap_query(URL, SAVE_FILE_PATH, PARAMS)
+VALID_DATA_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"
+sand_snap_query(URL, SAVE_FILE_PATH, VALID_DATA_FILTER)
