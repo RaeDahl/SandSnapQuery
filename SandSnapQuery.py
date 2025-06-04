@@ -54,7 +54,7 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str):
 
 	            # Save data into output file
                 data = response.json()
-                
+
                 if data is not None:
                     try:
                         if data["error"]:
