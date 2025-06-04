@@ -19,10 +19,10 @@ BROKEN_FILTER_2 = 0
 
 CANNON_BEACH_FILTER = "objectid=2120"
 OREGON_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error' AND location_state = 'OR'"
-# VICKSBURG_FILTER = {
-#     "layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
-#     "geometry": {"xmin":-91, "ymin":32, "xmax":-90, "ymax":33}
-# }
+VICKSBURG_FILTER = {
+    "layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
+    "geometry": {"xmin":-91, "ymin":32, "xmax":-90, "ymax":33}
+}
 
 SAVE_PATH = "unit_test_output.json"
 
@@ -80,25 +80,25 @@ with open(SAVE_PATH, "r", encoding="utf-8") as file:
     else:
         print("\033[31mFilter by state query unsuccessful, no data found\033[0m")
 
-# print("\033[36mTesting filtering by geometry\033[0m")
-# sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, VICKSBURG_FILTER)
-# with open(SAVE_PATH, "r", encoding="utf-8") as file:
-#     data = json.load(file)
-#     if data:
-#         if list(filter(lambda x:x ["objectid"] == "687", data)):
-#             print("Sandsnap known to be in area found.")
-#         else:
-#             print("\033[35mID 687 does not show up in result, missing data\033[0m")
+print("\033[36mTesting filtering by geometry\033[0m")
+sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, VICKSBURG_FILTER)
+with open(SAVE_PATH, "r", encoding="utf-8") as file:
+    data = json.load(file)
+    if data:
+        if list(filter(lambda x:x ["objectid"] == "687", data)):
+            print("Sandsnap known to be in area found.")
+        else:
+            print("\033[35mID 687 does not show up in result, missing data\033[0m")
 
-#         if len(data) == 75:
-#             print("Correct number of sandsnaps found when filtering by geometry")
-#         elif len(data) < 6:
-#             print(f"\033[35mSome data points missing. Only found {len(data)} valid sandsnaps in range, there should be 75.\033[0m")
-#         else:
-#             print(f"\033[35mExtra data found. Found {len(data)} valid sandsnaps in area, there should only be 75\033[0m")
+        if len(data) == 75:
+            print("Correct number of sandsnaps found when filtering by geometry")
+        elif len(data) < 6:
+            print(f"\033[35mSome data points missing. Only found {len(data)} valid sandsnaps in range, there should be 75.\033[0m")
+        else:
+            print(f"\033[35mExtra data found. Found {len(data)} valid sandsnaps in area, there should only be 75\033[0m")
 
-#     else:
-#         print("Filter by geometry query unsuccessful, no data found")
+    else:
+        print("Filter by geometry query unsuccessful, no data found")
 
 
 print("\n================================")

@@ -9,7 +9,7 @@ import json
 
 import requests
 
-def sand_snap_query(url : str, save_path : str, layer_defs : str):
+def sand_snap_query(url : str, save_path : str, layer_defs : str, geometry : list=None):
     """
     Description:
     ------------
@@ -29,6 +29,10 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str):
             The filter parameters to be included in the query. Use json 
             representation for layer definitions as described here: 
             https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service/
+
+        geometry : list[str]
+            Optional parameters for filtering geometry, default is none
+            Enter in format [xmin, ymin, xmax, ymax] with lat/lon coordinates as strings
 	    
         Returns:
         --------
@@ -42,7 +46,24 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str):
         # build url with parameters
         layer_defs = layer_defs.replace(" ", "+")
         layer_defs = layer_defs.replace("'", "%27")
-        url = url + '?layerDefs=%7B"0"%3A"' + layer_defs + '"%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
+       
+        if geometry == None:
+            url = url + '?layerDefs=%7B"0"%3A"'  +  \
+            layer_defs +  \
+            '"%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=' +  \
+            '&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false' + \
+            '&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
+
+        else:
+            url = url + '?layerDefs=%7B"0"%3A"' +  \
+            layer_defs + '"%7D&geometry%7B%22xmin%22%3A=' +  \
+            str(geometry[0]) + '%2C+%22ymin%3A' +  \
+            str(geometry[1]) + '%2C+%22xmax%22%3A' +  \
+            str(geometry[2]) + '%2C+%22ymax%22%3A' +  \
+            str(geometry[3]) +  \
+            '%7D&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false' + \
+            '&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false' +  \
+            '&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
 
         with open(save_path, "w", encoding="utf-8") as output_file:
 
