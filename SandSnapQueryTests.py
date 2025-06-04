@@ -57,7 +57,7 @@ with open(SAVE_PATH, "r", encoding="utf-8") as file:
     if data:
 
         print(type(data))
-        if data["features"["objectid"]] == 2120
+        if data["layers"]["features"]["attributes"]["objectid"] == "2120":
             print("\033[32mFiltering by objectid successful\033[0m")
         else:
             print("\033[31mID 2120 does not show up in result\033[0m")
