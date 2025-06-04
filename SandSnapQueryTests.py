@@ -29,52 +29,55 @@ CSV_SAVE_PATH = "unit_test_output.csv"
 
 
 # Test basic functionality
-print("\033[36mTesting correct query with default parameters\033[0m")
+print("\n\033[36mTesting correct query with default parameters\033[0m")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, DEFAULT_FILTER)
 if os.path.exists(SAVE_PATH):
-    print("Query and json file save successful")
+    if os.path.getsize(SAVE_PATH):
+        print("\033[32mQuery and json file save successful\033[0m")
+    else:
+        print("\033[31mSaved file is blank\033[0m")
 else:
-    print("\033[35mNo file saved to save path\033[0m")
+    print("\033[31mNo file saved to save path\033[0m")
 
 # Test error handling
 
 # Wrong URL
-print("\033[36mTesting error handling for incorrect urls\033[0m")
+print("\n\033[36mTesting error handling for incorrect urls\033[0m")
 sand_snap_query(BROKEN_URL, SAVE_PATH, DEFAULT_FILTER)
 
 # Invalid parameters
-print("\033[36mTesting error handling for queries with invalid filter parameters\033[0m")
+print("\n\033[36mTesting error handling for queries with invalid filter parameters\033[0m")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_1)
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_2)
 
 
 # Test filtering for specific data point
-print("\033[36mTesting filtering for a specific object id\033[0m")
+print("\n\033[36mTesting filtering for a specific object id\033[0m")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, CANNON_BEACH_FILTER)
 with open(SAVE_PATH, "r", encoding="utf-8") as file:
     data = json.load(file)
     if data:
 
         if list(filter(lambda x:x ["objectid"] == "2120", data)):
-            print("Filtering by objectid successful")
+            print("\033[32mFiltering by objectid successful\033[0m")
         else:
-            print("\033[35mID 2120 does not show up in result\033[0m")
+            print("\033[31mID 2120 does not show up in result\033[0m")
     else:
-        print("\033[35mFilter by ID query unsuccessful, no data found\033[0m")
+        print("\033[31mFilter by ID query unsuccessful, no data found\033[0m")
 
-print("\033[36mTesting filtering for a specific state\033[0m")
+print("\n\033[36mTesting filtering for a specific state\033[0m")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, OREGON_FILTER)
 with open(SAVE_PATH, "r", encoding="utf-8") as file:
     data = json.load(file)
     if data:
         if len(data) == 6:
-            print("Filtering by state successful")
+            print("\033[32mFiltering by state successful\033[0m")
         elif len(data) < 6:
-            print(f"\033[35mSome data points missing. Only found {len(data)} valid sandsnaps in OR, there should be 6.\033[0m")
+            print(f"\033[31mSome data points missing. Only found {len(data)} valid sandsnaps in OR, there should be 6.\033[0m")
         else:
-            print(f"\033[35mExtra data found. Found {len(data)} valid sandsnaps in OR, there should only be 6\033[0m")
+            print(f"\033[31mExtra data found. Found {len(data)} valid sandsnaps in OR, there should only be 6\033[0m")
     else:
-        print("\033[35mFilter by state query unsuccessful, no data found\033[0m")
+        print("\033[31mFilter by state query unsuccessful, no data found\033[0m")
 
 # print("\033[36mTesting filtering by geometry\033[0m")
 # sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, VICKSBURG_FILTER)
