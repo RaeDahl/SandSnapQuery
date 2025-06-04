@@ -3,7 +3,7 @@
 
 ## Description:
  
-A Python program to retrieve data from the [SandSnap query page](https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query). Uses the requests library to send a get request to the SandSnap API, the save the data into a local file.
+A Python program to retrieve data from the [SandSnap query page](https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query). Uses the requests library to send a get request to the SandSnap API, then saves the data into a local file.
 
 ## Current Functionality:
   
@@ -27,12 +27,12 @@ Define filter parameters using the json representation for layer definitions as 
 
 ### Examples:
 
-`{"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}} ` will filter for only data without errors
+`valid_data_filter = {"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}} ` will filter for only data without errors
 
-`{"layerDefs": {"0":"location_state = 'OR'"}` will return all SandSnaps in Oregon
+`beaches_in_oregon = {"layerDefs": {"0":"location_state = 'OR'"}` will return all SandSnaps in Oregon
 
-`{"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
-  "geometry": {"xmin":-91, "ymin":32, "xmax":-90, "ymax":33}}` will return all data within those coordinates
+`sandsnaps_near_vicksburg = {"layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
+  "geometry": {"xmin":-91, "ymin":32, "xmax":-90, "ymax":33}}` will return all valid data within those coordinates
 
 ## Testing
   
