@@ -14,8 +14,8 @@ A Python program to retrieve data from the [SandSnap query page](https://service
 ## Usage
 
 There is a default query set up in the `MAIN` section of `SandSnapQuery.py`. This code will download all data without errors and save it in json format. Comment it out when running the unit tests or if you 
-plan to import the function into other files. The function takes 4 arguments: The url for the query page, the path to save the output to, the filters for the data, and an optional argument for the file type
-to save in (default is json). Because arguments like the url and filter can be very long, it is recommended that you save those in separate variables before passing them to the query function.
+plan to import the function into other files. The function takes 3 arguments: The url for the query page, the path to save the output to, and the filters for the data. Because arguments like the url and 
+filter can be very long, it is recommended that you save those in separate variables before passing them to the query function.
 
 ### Examples: 
 
@@ -42,5 +42,4 @@ The data returned by the program is checked against known data from the SandSnap
 
   - [requests](https://pypi.org/project/requests/)
   - [json](https://docs.python.org/3/library/json.html)
-  - [csv](https://docs.python.org/3/library/csv.html)
   - [os](https://docs.python.org/3/library/os.html)
