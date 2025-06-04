@@ -47,6 +47,7 @@ def sand_snap_query(url : str, save_path : str, query_params : dict, file_type :
 
 	    # Check for errors
             if response.status_code == 200:
+                print(response.text)
 
 	        # Save data into output file
                 data = response.json()
@@ -80,7 +81,7 @@ SAVE_FILE_PATH = "output.json"
 
 # filters for only data points with a calculated grain size and no errors
 PARAMS = {
-    "layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"}
+    "layerDefs": {"0":"calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"},
 }
 
 sand_snap_query(URL, SAVE_FILE_PATH, PARAMS)
