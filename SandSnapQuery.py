@@ -42,7 +42,7 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str, file_type : st
     try:
 
         # build url with parameters
-         url = url + '?layerDefs=%&B"0"%3A"' + layer_defs + '"%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
+        url = url + '?layerDefs=%&B"0"%3A"' + layer_defs + '"%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
 
         with open(save_path, "w", encoding="utf-8") as output_file:
 
