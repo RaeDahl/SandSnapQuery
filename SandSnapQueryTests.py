@@ -25,8 +25,6 @@ OREGON_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS 
 # }
 
 SAVE_PATH = "unit_test_output.json"
-CSV_SAVE_PATH = "unit_test_output.csv"
-
 
 # Test basic functionality
 print("\n\033[36mTesting correct query with default parameters\033[0m")
@@ -49,7 +47,6 @@ sand_snap_query(BROKEN_URL, SAVE_PATH, DEFAULT_FILTER)
 print("\n\033[36mTesting error handling for queries with invalid filter parameters\033[0m")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_1)
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, BROKEN_FILTER_2)
-
 
 # Test filtering for specific data point
 print("\n\033[36mTesting filtering for a specific object id\033[0m")
