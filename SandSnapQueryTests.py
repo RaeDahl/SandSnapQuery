@@ -36,13 +36,6 @@ if os.path.exists(SAVE_PATH):
 else:
     print("\033[35mNo file saved to save path\033[0m")
 
-print("\033[36mTesting correct query saved to csv file\033[0m")
-sand_snap_query(CORRECT_QUERY_URL, CSV_SAVE_PATH, DEFAULT_FILTER, file_type="csv")
-if os.path.exists(CSV_SAVE_PATH):
-    print("Query and csv file save successful")
-else:
-    print("\035[31mNo file saved to save path\033[0m")
-
 # Test error handling
 
 # Wrong URL

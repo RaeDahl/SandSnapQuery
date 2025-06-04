@@ -10,7 +10,7 @@ import csv
 
 import requests
 
-def sand_snap_query(url : str, save_path : str, layer_defs : str, file_type : str = "json"):
+def sand_snap_query(url : str, save_path : str, layer_defs : str):
     """
     Description:
     ------------
@@ -31,21 +31,19 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str, file_type : st
             representation for layer definitions as described here: 
             https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service/
 	    
-        file_type : str
-            can be either "csv" or "json", default is json
-            sets what file type to save output into
-	    
         Returns:
         --------
         None, but does generate a file with output in the location specified by save_path
         """
     try:
 
+        if type(url) != str or type(save_path) != str or type(layer_defs) != str:
+            raise(TypeError)
+
         # build url with parameters
         layer_defs = layer_defs.replace(" ", "+")
         layer_defs = layer_defs.replace("'", "%27")
         url = url + '?layerDefs=%7B"0"%3A"' + layer_defs + '"%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
-        print(url)
 
         with open(save_path, "w", encoding="utf-8") as output_file:
 
@@ -59,22 +57,17 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str, file_type : st
                 data = response.json()
                 data = data.get("features")
 
-                if file_type == "csv":
-                    writer = csv.DictWriter(output_file, fieldnames=data[0].keys())
-                    writer.writeheader()
-                    writer.writerows(data)
-
-                else:
-                    if file_type != "json":
-                        print(f"Invalid file type {file_type} given. Saving as json instead.")
-                    json_string = json.dumps(data)
-                    output_file.write(json_string)
+                json_string = json.dumps(data)
+                output_file.write(json_string)
 
             else:
                 print(f"Request failed with error code {response.status_code}.")
 
     except (requests.exceptions.Timeout, requests.exceptions.HTTPError, requests.exceptions.ConnectionError) as e:
         print(f"Program failed with error {e}.")
+
+    except TypeError:
+        print("One or more input arguments had incorrect type. All arguments should be strings")
 
 
 ### MAIN ###
