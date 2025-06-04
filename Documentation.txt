@@ -5,7 +5,7 @@ Object Notation, or json, format and saved in the file specified by the SAVE_FIL
 The function can save data in either json or csv format, but defaults to json.
 
 As of right now, I do not have a computer with Python installed, so I am unable to test the code. However, query formatting can be tested directly through the SandSnap website, and I have been able to 
-set up a default filter that gives only data points without errors. 
+set up a default filter that gives only data points without errors. A code session is currently queued for WaterWorks On Demand, which will hopefully allow me to test the code.
 
 A set of unit tests was developed to ensure the query code runs correctly. This includes running the query function with both correct and incorrect parameters. The tests then check for proper error 
 handling and compare data returned by the functions to known data from the SandSnap website to ensure that it's working properly.
