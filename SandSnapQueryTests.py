@@ -26,6 +26,10 @@ OREGON_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS 
 
 SAVE_PATH = "unit_test_output.json"
 
+print("\n================================")
+print("     Starting unit tests.")
+print("================================")
+
 # Test basic functionality
 print("\n\033[36mTesting correct query with default parameters\033[0m")
 sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, DEFAULT_FILTER)
@@ -95,3 +99,8 @@ with open(SAVE_PATH, "r", encoding="utf-8") as file:
 
 #     else:
 #         print("Filter by geometry query unsuccessful, no data found")
+
+
+print("\n================================")
+print("       Testing completed.")
+print("================================\n")

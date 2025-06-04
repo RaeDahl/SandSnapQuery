@@ -54,7 +54,13 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str):
 
 	            # Save data into output file
                 data = response.json()
+                
                 if data is not None:
+                    try:
+                        if data["error"]:
+                            raise ValueError
+                    except KeyError:
+                        pass
                     data = data["layers"][0]["features"]
 
                     json_string = json.dumps(data)
@@ -71,6 +77,8 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str):
 
     except TypeError:
         print("One or more input arguments had incorrect type. All arguments should be strings")
+    except ValueError:
+        print("The URL was invalid")
 
 
 ### MAIN ###
@@ -83,4 +91,4 @@ SAVE_FILE_PATH = "output.json"
 
 # filters for only data points with a calculated grain size and no errors
 VALID_DATA_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"
-sand_snap_query(URL, SAVE_FILE_PATH, VALID_DATA_FILTER)
+#sand_snap_query(URL, SAVE_FILE_PATH, VALID_DATA_FILTER)
