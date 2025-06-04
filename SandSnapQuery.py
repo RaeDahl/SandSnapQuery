@@ -42,18 +42,20 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str, file_type : st
     try:
 
         # build url with parameters
-        url = url + '?layerDefs=%&B"0"%3A"' + layer_defs + '"%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
+        layer_defs = layer_defs.replace(" ", "+")
+        layer_defs = layer_defs.replace("'", "%27")
+        url = url + '?layerDefs=%7B"0"%3A"' + layer_defs + '"%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
+        print(url)
 
         with open(save_path, "w", encoding="utf-8") as output_file:
 
             # Request data from server
             response = requests.get(url, timeout=5)
 
-	    # Check for errors
+	        # Check for errors
             if response.status_code == 200:
-                print(response.text)
 
-	        # Save data into output file
+	            # Save data into output file
                 data = response.json()
                 data = data.get("features")
 
