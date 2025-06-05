@@ -46,8 +46,8 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str, geometry : lis
         # build url with parameters
         layer_defs = layer_defs.replace(" ", "+")
         layer_defs = layer_defs.replace("'", "%27")
-       
-        if geometry == None:
+
+        if geometry is None:
             url = url + '?layerDefs=%7B"0"%3A"'  +  \
             layer_defs +  \
             '"%7D&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=' +  \
