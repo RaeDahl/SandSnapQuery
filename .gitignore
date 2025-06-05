@@ -1,1 +1,4 @@
 /.vscode/
+output.json
+unit_test_output.json
+geometry_filter_output.json
