@@ -78,14 +78,19 @@ with open(SAVE_PATH, "r", encoding="utf-8") as file:
     else:
         print("\033[31mFilter by state query unsuccessful, no data found\033[0m")
 
-print("\033[36mTesting filtering by geometry\033[0m")
-sand_snap_query(CORRECT_QUERY_URL, SAVE_PATH, DEFAULT_FILTER, geometry=VICKSBURG_FILTER)
-with open(SAVE_PATH, "r", encoding="utf-8") as file:
+print("\n\033[36mTesting filtering by geometry\033[0m")
+sand_snap_query(CORRECT_QUERY_URL, "geometry_filter_output.json", DEFAULT_FILTER, geometry=VICKSBURG_FILTER)
+with open("geometry_filter_output.json", "r", encoding="utf-8") as file:
     data = json.load(file)
     if data:
-        if  data[0]["attributes"]["objectid"] == 687:
-            print("\033[32mSandsnap known to be in area found.\033[0m")
-        else:
+        snap_found = False
+        for sandsnap in data:
+            if  sandsnap["attributes"]["objectid"] == 687:
+                print("\033[32mSandsnap known to be in area found.\033[0m")
+                snap_found = True
+                break
+        
+        if not snap_found:
             print("\033[35mID 687 does not show up in result, missing data\033[0m")
 
         if len(data) == 75:

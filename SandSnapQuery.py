@@ -6,7 +6,6 @@ A program to download data from the SandSnap database
 # pylint: disable=line-too-long,invalid-name
 
 import json
-
 import requests
 
 def sand_snap_query(url : str, save_path : str, layer_defs : str, geometry : list=None):
@@ -56,14 +55,14 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str, geometry : lis
 
         else:
             url = url + '?layerDefs=%7B"0"%3A"' +  \
-            layer_defs + '"%7D&geometry%7B%22xmin%22%3A=' +  \
-            str(geometry[0]) + '%2C+%22ymin%3A' +  \
+            layer_defs + '"%7D&geometry=%7B%22xmin%22%3A' +  \
+            str(geometry[0]) + '%2C+%22ymin%22%3A' +  \
             str(geometry[1]) + '%2C+%22xmax%22%3A' +  \
             str(geometry[2]) + '%2C+%22ymax%22%3A' +  \
             str(geometry[3]) +  \
             '%7D&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false' + \
             '&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false' +  \
-            '&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
+            '&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token=')
 
         with open(save_path, "w", encoding="utf-8") as output_file:
 
