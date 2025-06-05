@@ -62,7 +62,7 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str, geometry : lis
             str(geometry[3]) +  \
             '%7D&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&outSR=&datumTransformation=&applyVCSProjection=false' + \
             '&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&returnIdsOnly=false&returnCountOnly=false&returnDistinctValues=false' +  \
-            '&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token=')
+            '&returnZ=false&returnM=false&sqlFormat=none&f=pjson&token='
 
         with open(save_path, "w", encoding="utf-8") as output_file:
 

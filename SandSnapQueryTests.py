@@ -83,13 +83,13 @@ sand_snap_query(CORRECT_QUERY_URL, "geometry_filter_output.json", DEFAULT_FILTER
 with open("geometry_filter_output.json", "r", encoding="utf-8") as file:
     data = json.load(file)
     if data:
-        snap_found = False
-        for sandsnap in data:
-            if  sandsnap["attributes"]["objectid"] == 687:
-                print("\033[32mSandsnap known to be in area found.\033[0m")
-                snap_found = True
-                break
-        
+         snap_found = False
+         for sandsnap in data:
+             if  sandsnap["attributes"]["objectid"] == 687:
+                  print("\033[32mSandsnap known to be in area found.\033[0m")
+                  snap_found = True
+                  break
+
         if not snap_found:
             print("\033[35mID 687 does not show up in result, missing data\033[0m")
 
