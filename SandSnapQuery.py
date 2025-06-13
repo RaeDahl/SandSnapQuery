@@ -107,7 +107,10 @@ def get_sandsnap_image(id: str):
         id + "/attachments"
 
     response = requests.get(url, timeout=5)
-    print(response.json())
+    if response.status_code == 200:
+        print(response.text)
+    else:
+        print(f"request failed with error code {response.status_code}.")
 
 ### MAIN ###
 
