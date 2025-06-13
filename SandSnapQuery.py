@@ -120,3 +120,5 @@ def get_sandsnap_image(id: str):
 # # filters for only data points with a calculated grain size and no errors
 # VALID_DATA_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"
 # #sand_snap_query(URL, SAVE_FILE_PATH, VALID_DATA_FILTER)
+
+get_sandsnap_image("2120")
