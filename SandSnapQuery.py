@@ -107,7 +107,10 @@ def get_sandsnap_image(id: str):
         id + "/attachments"
 
     response = requests.get(url, timeout=5)
-    print(response.json())
+    if response.status_code == 200:
+        print(response.text)
+    else:
+        print(f"request failed with error code {response.status_code}.")
 
 ### MAIN ###
 
@@ -120,3 +123,5 @@ def get_sandsnap_image(id: str):
 # # filters for only data points with a calculated grain size and no errors
 # VALID_DATA_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"
 # #sand_snap_query(URL, SAVE_FILE_PATH, VALID_DATA_FILTER)
+
+get_sandsnap_image("2120")
