@@ -101,14 +101,22 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str, geometry : lis
         print("The URL was invalid")
 
 
+def get_sandsnap_image(id: str):
+
+    url = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/ArcGIS/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/0/" + \
+        id + "/attachments"
+
+    response = requests.get(url, timeout=5)
+    print(response.json())
+
 ### MAIN ###
 
-# url for SandSnap query page
-URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query"
+# # url for SandSnap query page
+# URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query"
 
-# path to file data is outputted in. Should be a json file.
-SAVE_FILE_PATH = "output.json"
+# # path to file data is outputted in. Should be a json file.
+# SAVE_FILE_PATH = "output.json"
 
-# filters for only data points with a calculated grain size and no errors
-VALID_DATA_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"
-#sand_snap_query(URL, SAVE_FILE_PATH, VALID_DATA_FILTER)
+# # filters for only data points with a calculated grain size and no errors
+# VALID_DATA_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"
+# #sand_snap_query(URL, SAVE_FILE_PATH, VALID_DATA_FILTER)

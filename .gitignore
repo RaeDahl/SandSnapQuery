@@ -4,3 +4,4 @@ unit_test_output.json
 geometry_filter_output.json
 query.txt
 RequiredSoftware.txt
+/__pycache__/
