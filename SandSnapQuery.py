@@ -6,8 +6,8 @@ A program to download data from the SandSnap database
 # pylint: disable=line-too-long,invalid-name
 
 import json
-import requests
 import os
+import requests
 
 def sand_snap_query(url : str, save_path : str, layer_defs : str, geometry : list=None):
     """
@@ -102,10 +102,24 @@ def sand_snap_query(url : str, save_path : str, layer_defs : str, geometry : lis
         print("The URL was invalid")
 
 
-def get_sandsnap_image(id: str):
+def get_sandsnap_image(snap_id: str):
+    """
+    Description:
+    ------------
+    Downloads the image associated with a sandsnap
+    
+    Parameters:
+    -----------
+    snap_id : str
+        The id number of the sandsnap to get an image for, as a string
+	    
+        Returns:
+        --------
+        None, but does save the image as a jpg file
+        """
 
     url = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/ArcGIS/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/0/" + \
-        id + "/attachments"
+        snap_id + "/attachments"
 
     response = requests.post(url, data={"token" : ""}, timeout=5)
     if response.status_code == 200:
@@ -118,7 +132,7 @@ def get_sandsnap_image(id: str):
         # Get image file
         image_response = requests.get(new_url, timeout=5, stream=True)
         if image_response.status_code == 200:
-            filename = "sandsnap_" + id + "_image.jpg"
+            filename = "sandsnap_" + snap_id + "_image.jpg"
             filename = os.path.join("output_files", filename)
             with open(filename, "wb") as image_file:
                 image_file.write(image_response.content)
@@ -140,4 +154,4 @@ def get_sandsnap_image(id: str):
 # VALID_DATA_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error'"
 # #sand_snap_query(URL, SAVE_FILE_PATH, VALID_DATA_FILTER)
 
-get_sandsnap_image("2120")
+# get_sandsnap_image("2120")
