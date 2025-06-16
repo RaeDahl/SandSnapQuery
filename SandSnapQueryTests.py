@@ -108,7 +108,7 @@ get_sandsnap_image("2120")
 output_path = "output_files/sandsnap_2120_image.jpg"
 if os.path.exists(output_path) and os.path.getsize(output_path):
     print("\033[32mImage download successful\033[0m")
-else: 
+else:
     print("\033[31mNo image file saved\033[0m")
 
 # print status message
