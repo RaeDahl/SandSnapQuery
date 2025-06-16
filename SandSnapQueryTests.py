@@ -8,7 +8,7 @@ Unit tests for SandSnap Query code
 import json
 import os
 
-from SandSnapQuery import sand_snap_query
+from SandSnapQuery import sand_snap_query, get_sandsnap_image
 
 CORRECT_QUERY_URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/ArcGIS/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query"
 BROKEN_URL = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/arcgis/rest/services/survey123_402b0ce4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/query?layerDefs=%7B%220%22"
@@ -21,7 +21,7 @@ CANNON_BEACH_FILTER = "objectid=2120"
 OREGON_FILTER = "calc_grain_size <> 'Unknown Grain Size' AND calc_grain_size IS NOT NULL AND unknown_error_flag = 'False' AND process_status <> 'Error' AND location_state = 'OR'"
 VICKSBURG_FILTER = [-91, 32, -90, 33]
 
-SAVE_PATH = "unit_test_output.json"
+SAVE_PATH = os.path.join("output_files", "unit_test_output.json")
 
 # print status message
 print("\n================================")
@@ -79,8 +79,8 @@ with open(SAVE_PATH, "r", encoding="utf-8") as file:
         print("\033[31mFilter by state query unsuccessful, no data found\033[0m")
 
 print("\n\033[36mTesting filtering by geometry\033[0m")
-sand_snap_query(CORRECT_QUERY_URL, "geometry_filter_output.json", DEFAULT_FILTER, geometry=VICKSBURG_FILTER)
-with open("geometry_filter_output.json", "r", encoding="utf-8") as file:
+sand_snap_query(CORRECT_QUERY_URL, "output_files/geometry_filter_output.json", DEFAULT_FILTER, geometry=VICKSBURG_FILTER)
+with open("output_files/geometry_filter_output.json", "r", encoding="utf-8") as file:
     data = json.load(file)
     if data:
         snap_found = False
@@ -102,6 +102,14 @@ with open("geometry_filter_output.json", "r", encoding="utf-8") as file:
 
     else:
         print("\033[31mFilter by geometry query unsuccessful, no data found\033[0m")
+
+print("\n\033[36mTesting image download\033[0m")
+get_sandsnap_image("2120")
+output_path = "output_files/sandsnap_2120_image.jpg"
+if os.path.exists(output_path) and os.path.getsize(output_path):
+    print("\033[32mImage download successful\033[0m")
+else:
+    print("\033[31mNo image file saved\033[0m")
 
 # print status message
 print("\n================================")
