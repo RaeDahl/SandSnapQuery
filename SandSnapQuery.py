@@ -7,6 +7,7 @@ A program to download data from the SandSnap database
 
 import json
 import requests
+import os
 
 def sand_snap_query(url : str, save_path : str, layer_defs : str, geometry : list=None):
     """
@@ -106,9 +107,24 @@ def get_sandsnap_image(id: str):
     url = "https://services6.arcgis.com/rZL2YPlohtwSQBWu/ArcGIS/rest/services/survey123_402b0c9d9dfe4bcc8b4b7d6873c710fe_fieldworker/FeatureServer/0/" + \
         id + "/attachments"
 
-    response = requests.get(url, timeout=5)
+    response = requests.post(url, data={"token" : ""}, timeout=5)
     if response.status_code == 200:
-        print(response.text)
+        # Find link for image file
+        lines = response.text.splitlines()
+        new_url = lines[33]
+        new_url = new_url.split('"')[1]
+        new_url = "https://services6.arcgis.com" + new_url
+
+        # Get image file
+        image_response = requests.get(new_url, timeout=5, stream=True)
+        if image_response.status_code == 200:
+            filename = "sandsnap_" + id + "_image.jpg"
+            filename = os.path.join("output_files", filename)
+            with open(filename, "wb") as image_file:
+                image_file.write(image_response.content)
+
+        else:
+            print(f"Image request failed with error code {response.status_code}.")
     else:
         print(f"request failed with error code {response.status_code}.")
 
