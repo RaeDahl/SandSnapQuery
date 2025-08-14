@@ -36,8 +36,6 @@ Define filter parameters using the json representation for layer definitions as 
 The repository also includes a suite of unit tests to ensure that the query function works properly. The query function is run with both correct and incorrect parameters, and checked for proper error handling. 
 The data returned by the program is checked against known data from the SandSnap website to make sure it is downloading and filtering correctly.
 
-## Known Issues
-
 ## Dependencies
 
   - [requests](https://pypi.org/project/requests/)
