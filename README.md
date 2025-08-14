@@ -8,13 +8,13 @@ A Python program to retrieve data from the [SandSnap query page](https://service
 ## Current Functionality:
   
   - Downloads data from SandSnap API
-  - Can include filters in API query (Eg. only return data points with no errors, or give all data from a specific state)
+  - Can include filters in API query (E.g. only return data points with no errors, or give all data from a specific state)
   - Saves data in json file
 
 ## Usage
 
 There is a default query set up in the `MAIN` section of `SandSnapQuery.py`. This code will download all data without errors and save it in json format. Comment it out when running the unit tests or if you 
-plan to import the function into other files. The function takes 3 arguments: The url for the query page, the path to save the output to, and the filters for the data. Because arguments like the url and 
+plan to import the function into other files. The function takes 3 arguments: The URL for the query page, the path to save the output to, and the filters for the data. Because arguments like the URL and 
 filter can be very long, it is recommended that you save those in separate variables before passing them to the query function.
 
 ### Examples: 
@@ -33,7 +33,7 @@ Define filter parameters using the json representation for layer definitions as 
 
 ## Testing
   
-The repository also includes a suite of unit tests to ensure that the query function works properly. The query function is run with both correct and incorrect parameters, and checked for proper error handling. 
+The repository also includes a suite of unit tests to ensure that the query function works properly. The query function is run with both correct and incorrect parameters and checked for proper error handling. 
 The data returned by the program is checked against known data from the SandSnap website to make sure it is downloading and filtering correctly.
 
 ## Dependencies
